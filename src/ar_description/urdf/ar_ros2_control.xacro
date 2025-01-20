@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="ar">
+
+    <ros2_control name="RobotSystem" type="system">
+
+        <xacro:property name="PI" value="3.14159265359" />
+
+        <hardware>
+            <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+        </hardware>
+
+
+        <!-- add joint param for ros2 control -->
+        <joint name="hip_1">
+            <command_interface name="position">
+            <param name="min">0</param>
+            <param name="max">-1.5708</param>
+            </command_interface>
+            <state_interface name="position"/>
+        </joint>
+
+        <joint name="thigh_1">
+            <command_interface name="position">
+            <param name="min">0</param>
+            <param name="max">-3.14</param>
+            </command_interface>
+            <state_interface name="position"/>
+        </joint>
+
+        <joint name="leg_1">
+            <command_interface name="position">
+            <param name="min">0</param>
+            <param name="max">3.14</param>
+            </command_interface>
+            <state_interface name="position"/>
+        </joint>
+
+        <joint name="hip_2">
+            <command_interface name="position">
+            <param name="min">0</param>
+            <param name="max">1.5708</param>
+            </command_interface>
+            <state_interface name="position"/>
+        </joint>
+
+        <joint name="thigh_2">
+            <command_interface name="position">
+            <param name="min">0</param>
+            <param name="max">-3.14</param>
+            </command_interface>
+            <state_interface name="position"/>
+        </joint>
+
+        <joint name="leg_2">
+            <command_interface name="position">
+            <param name="min">0</param>
+            <param name="max">3.14</param>
+            </command_interface>
+            <state_interface name="position"/>
+        </joint>
+
+        <joint name="hip_3">
+            <command_interface name="position">
+            <param name="min">0</param>
+            <param name="max">-1.5708</param>
+            </command_interface>
+            <state_interface name="position"/>
+        </joint>
+
+        <joint name="thigh_3">
+            <command_interface name="position">
+            <param name="min">0</param>
+            <param name="max">-3.14</param>
+            </command_interface>
+            <state_interface name="position"/>
+        </joint>
+
+        <joint name="leg_3">
+            <command_interface name="position">
+            <param name="min">0</param>
+            <param name="max">3.14</param>
+            </command_interface>
+            <state_interface name="position"/>
+        </joint>
+
+        <joint name="hip_4">
+            <command_interface name="position">
+            <param name="min">0</param>
+            <param name="max">1.5708</param>
+            </command_interface>
+            <state_interface name="position"/>
+        </joint>
+
+        <joint name="thigh_4">
+            <command_interface name="position">
+            <param name="min">0</param>
+            <param name="max">-3.14</param>
+            </command_interface>
+            <state_interface name="position"/>
+        </joint>
+
+        <joint name="leg_4">
+            <command_interface name="position">
+            <param name="min">0</param>
+            <param name="max">3.14</param>
+            </command_interface>
+            <state_interface name="position"/>
+        </joint>
+    </ros2_control>
+</robot>

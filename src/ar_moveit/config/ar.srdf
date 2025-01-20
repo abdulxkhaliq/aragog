@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<robot name= "ar">
+    <group name="arm">
+
+        <joint name="hip_1"/>
+        <joint name="thigh_1"/>
+        <joint name="leg_1"/>
+
+        <joint name="hip_2"/>
+        <joint name="thigh_2"/>
+        <joint name="leg_2"/>
+
+        <joint name="hip_3"/>
+        <joint name="thigh_3"/>
+        <joint name="leg_3"/>
+
+    </group>
+</robot>

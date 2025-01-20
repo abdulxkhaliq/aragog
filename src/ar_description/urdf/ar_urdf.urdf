@@ -1,0 +1,758 @@
+<?xml version="1.0" encoding="utf-8"?> 
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="ar_urdf">
+
+
+  <xacro:include filename="$(find ar_description)/urdf/ar_gazebo.xacro" />
+  <xacro:include filename="$(find ar_description)/urdf/ar_ros2_control.xacro" />
+<link name="base_footprint">
+    <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <box size="0.001 0.001 0.001" />
+        </geometry>
+    </visual>
+</link>
+
+<joint name="base_footprint_joint" type="fixed">
+    <origin xyz="0 0 0.001" rpy="0 0 0" />
+    <parent link="base_footprint"/>
+    <child link="base_link" />
+</joint>
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.00017351695189103 2.22044604925031E-16 0.018257355198043"
+        rpy="0 0 0" />
+      <mass
+        value="0.055806801052617" />
+      <inertia
+        ixx="4.43729514692087E-05"
+        ixy="-4.28590759904881E-20"
+        ixz="-4.23380322908171E-11"
+        iyy="4.74674059951151E-05"
+        iyz="-1.71228813887195E-19"
+        izz="8.75422445303532E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ar_description/meshes/visual/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.250980392156863 0.250980392156863 0.250980392156863 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ar_description/meshes/visual/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="c1_rf">
+    <inertial>
+      <origin
+        xyz="-0.0220912727040635 0.0032619852687302 0.0132421365474836"
+        rpy="0 0 0" />
+      <mass
+        value="0.00723872418872687" />
+      <inertia
+        ixx="5.26919016136901E-07"
+        ixy="3.82899048173995E-07"
+        ixz="1.49674782355645E-07"
+        iyy="3.21239531790107E-06"
+        iyz="-2.94173764309723E-08"
+        izz="3.27257999855941E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ar_description/meshes/visual/c1_rf.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ar_description/meshes/visual/c1_rf.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="j_c1_rf"
+    type="revolute">
+    <origin
+      xyz="0.038964 0.038964 0"
+      rpy="0 0 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="c1_rf" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="0"
+      upper="-1.5708"
+      effort="30"
+      velocity="10" />
+  </joint>
+  <link
+    name="thigh_rf">
+    <inertial>
+      <origin
+        xyz="0.00172130074330719 0.0354582447923059 -0.0227443991910586"
+        rpy="0 0 0" />
+      <mass
+        value="0.0122900929113511" />
+      <inertia
+        ixx="8.46975567099491E-06"
+        ixy="-2.22115485848119E-07"
+        ixz="-3.0605682664462E-22"
+        iyy="3.90503017377269E-06"
+        iyz="4.31847988900101E-21"
+        izz="5.00726458223546E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ar_description/meshes/visual/thigh_rf.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.250980392156863 0.250980392156863 0.250980392156863 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ar_description/meshes/visual/thigh_rf.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="j_thigh_rf"
+    type="revolute">
+    <origin
+      xyz="-0.032897 0.018682 0.0145"
+      rpy="1.5708 0 3.1361" />
+    <parent
+      link="c1_rf" />
+    <child
+      link="thigh_rf" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="-3.14"
+      effort="30"
+      velocity="10" />
+  </joint>
+  <link
+    name="tibia_rf">
+    <inertial>
+      <origin
+        xyz="0.0154856710497862 -0.021190654973501 -0.012758685109328"
+        rpy="0 0 0" />
+      <mass
+        value="0.016853588409455" />
+      <inertia
+        ixx="8.27203031718574E-06"
+        ixy="2.7755205782777E-06"
+        ixz="-1.21624176186865E-07"
+        iyy="2.75646512554303E-06"
+        iyz="4.2658898429354E-07"
+        izz="9.92644989678198E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ar_description/meshes/visual/tibia_rf.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ar_description/meshes/visual/tibia_rf.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="j_tibia_rf"
+    type="revolute">
+    <origin
+      xyz="0.0034426 0.070916 0"
+      rpy="0 0 0" />
+    <parent
+      link="thigh_rf" />
+    <child
+      link="tibia_rf" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="3.14"
+      effort="30"
+      velocity="10" />
+  </joint>
+  <link
+    name="c1_lf">
+    <inertial>
+      <origin
+        xyz="0.0221252626163613 -0.00302285159009662 0.0132421365474836"
+        rpy="0 0 0" />
+      <mass
+        value="0.00723872418872688" />
+      <inertia
+        ixx="5.1895067399232E-07"
+        ixy="3.53764600578398E-07"
+        ixz="-1.49984210130526E-07"
+        iyy="3.22036366004566E-06"
+        iyz="2.77967483856143E-08"
+        izz="3.27257999855942E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ar_description/meshes/visual/c1_lf.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ar_description/meshes/visual/c1_lf.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="j_c1_lf"
+    type="revolute">
+    <origin
+      xyz="-0.038964 0.038964 0"
+      rpy="0 0 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="c1_lf" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="0"
+      upper="1.5708"
+      effort="30"
+      velocity="10" />
+  </joint>
+  <link
+    name="thigh_lf">
+    <inertial>
+      <origin
+        xyz="0.00102817428000136 0.0354851075473915 -0.0227443991910586"
+        rpy="0 0 0" />
+      <mass
+        value="0.0122900929113511" />
+      <inertia
+        ixx="8.4766910006247E-06"
+        ixy="-1.32775427937192E-07"
+        ixz="-6.17076736964559E-22"
+        iyy="3.89809484414295E-06"
+        iyz="-2.43565664131958E-21"
+        izz="5.00726458223548E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ar_description/meshes/visual/thigh_lf.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.250980392156863 0.250980392156863 0.250980392156863 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ar_description/meshes/visual/thigh_lf.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="j_thigh_lf"
+    type="revolute">
+    <origin
+      xyz="0.033098 -0.018325 0.0145"
+      rpy="1.5708 0 0.0052978" />
+    <parent
+      link="c1_lf" />
+    <child
+      link="thigh_lf" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="-3.14"
+      effort="30"
+      velocity="10" />
+  </joint>
+  <link
+    name="tibia_lf">
+    <inertial>
+      <origin
+        xyz="0.0160726159435025 -0.0207489971805357 -0.0127586851598917"
+        rpy="0 0 0" />
+      <mass
+        value="0.0168535885004318" />
+      <inertia
+        ixx="8.11242870932314E-06"
+        ixy="2.92546317453078E-06"
+        ixz="-1.33514388204785E-07"
+        iyy="2.91606659044416E-06"
+        iyz="4.23018336086094E-07"
+        izz="9.92644973798506E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ar_description/meshes/visual/tibia_lf.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ar_description/meshes/visual/tibia_lf.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="j_tibia_lf"
+    type="revolute">
+    <origin
+      xyz="0.0020563 0.07097 0"
+      rpy="0 0 0" />
+    <parent
+      link="thigh_lf" />
+    <child
+      link="tibia_lf" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="3.14"
+      effort="30"
+      velocity="10" />
+  </joint>
+  <link
+    name="c1_lr">
+    <inertial>
+      <origin
+        xyz="0.0221038079027571 -0.00317593352838643 0.0132421365474836"
+        rpy="0 0 0" />
+      <mass
+        value="0.00723872418872688" />
+      <inertia
+        ixx="5.23977620384158E-07"
+        ixy="3.72429833251138E-07"
+        ixz="-1.49788203525471E-07"
+        iyy="3.21533671365382E-06"
+        iyz="2.88342954466228E-08"
+        izz="3.27257999855942E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ar_description/meshes/visual/c1_lr.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ar_description/meshes/visual/c1_lr.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="j_c1_lr"
+    type="revolute">
+    <origin
+      xyz="-0.038964 -0.038964 0"
+      rpy="0 0 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="c1_lr" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="0"
+      upper="-1.5708"
+      effort="30"
+      velocity="10" />
+  </joint>
+  <link
+    name="thigh_lr">
+    <inertial>
+      <origin
+        xyz="0.000493871225472869 0.0354965644987329 -0.0227443991910588"
+        rpy="0 0 0" />
+      <mass
+        value="0.0122900929113511" />
+      <inertia
+        ixx="8.47965051287701E-06"
+        ixy="-6.3797681208131E-08"
+        ixz="-4.00355416475665E-22"
+        iyy="3.89513533189061E-06"
+        iyz="1.42267226108766E-21"
+        izz="5.00726458223547E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ar_description/meshes/visual/thigh_lr.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.250980392156863 0.250980392156863 0.250980392156863 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ar_description/meshes/visual/thigh_lr.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="j_thigh_lr"
+    type="revolute">
+    <origin
+      xyz="0.03297 -0.018554 0.0145"
+      rpy="1.5708 0 -0.0016244" />
+    <parent
+      link="c1_lr" />
+    <child
+      link="thigh_lr" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="-3.14"
+      effort="30"
+      velocity="10" />
+  </joint>
+  <link
+    name="tibia_lr">
+    <inertial>
+      <origin
+        xyz="0.0163156200750515 -0.0205584631651521 -0.012758685157367"
+        rpy="0 0 0" />
+      <mass
+        value="0.0168535884881347" />
+      <inertia
+        ixx="8.04287673724447E-06"
+        ixy="2.98578541089061E-06"
+        ixz="-1.38482054964339E-07"
+        iyy="2.98561858081811E-06"
+        iyz="4.2141823171277E-07"
+        izz="9.92644975734268E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ar_description/meshes/visual/tibia_lr.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ar_description/meshes/visual/tibia_lr.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="j_tibia_lr"
+    type="revolute">
+    <origin
+      xyz="0.00098774 0.070993 0"
+      rpy="0 0 0" />
+    <parent
+      link="thigh_lr" />
+    <child
+      link="tibia_lr" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="3.14"
+      effort="30"
+      velocity="10" />
+  </joint>
+  <link
+    name="c1_rr">
+    <inertial>
+      <origin
+        xyz="-0.0220601482566972 0.00346622798893166 0.0132421365474836"
+        rpy="0 0 0" />
+      <mass
+        value="0.00723872418872688" />
+      <inertia
+        ixx="5.34233526125944E-07"
+        ixy="4.07677718634169E-07"
+        ixz="1.49396215152724E-07"
+        iyy="3.20508080791203E-06"
+        iyz="-3.0800866989946E-08"
+        izz="3.27257999855942E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ar_description/meshes/visual/c1_rr.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ar_description/meshes/visual/c1_rr.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="j_c1_rr"
+    type="revolute">
+    <origin
+      xyz="0.038964 -0.038964 0"
+      rpy="0 0 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="c1_rr" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="0"
+      upper="1.5708"
+      effort="30"
+      velocity="10" />
+  </joint>
+  <link
+    name="thigh_rr">
+    <inertial>
+      <origin
+        xyz="0.00123667447342444 0.0354784531264658 -0.0227443991910587"
+        rpy="0 0 0" />
+      <mass
+        value="0.0122900929113511" />
+      <inertia
+        ixx="8.47497249675008E-06"
+        ixy="-1.5967058665743E-07"
+        ixz="-1.65436122510606E-22"
+        iyy="3.89981334801756E-06"
+        iyz="1.80899005416841E-21"
+        izz="5.00726458223548E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ar_description/meshes/visual/thigh_rr.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.250980392156863 0.250980392156863 0.250980392156863 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ar_description/meshes/visual/thigh_rr.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="j_thigh_rr"
+    type="revolute">
+    <origin
+      xyz="-0.032723 0.018985 0.0145"
+      rpy="1.5708 0 3.1268" />
+    <parent
+      link="c1_rr" />
+    <child
+      link="thigh_rr" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="-3.14"
+      effort="30"
+      velocity="10" />
+  </joint>
+  <link
+    name="tibia_rr">
+    <inertial>
+      <origin
+        xyz="0.0153585098379955 -0.0212829988317843 -0.012758685069215"
+        rpy="0 0 0" />
+      <mass
+        value="0.0168535883309398" />
+      <inertia
+        ixx="8.30506999213981E-06"
+        ixy="2.74229656785799E-06"
+        ixz="-1.19067731784284E-07"
+        iyy="2.72342558599626E-06"
+        iyz="4.27309579527249E-07"
+        izz="9.92645004473235E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ar_description/meshes/visual/tibia_rr.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ar_description/meshes/visual/tibia_rr.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="j_tibia_rr"
+    type="revolute">
+    <origin
+      xyz="0.0024733 0.070957 0"
+      rpy="0 0 0" />
+    <parent
+      link="thigh_rr" />
+    <child
+      link="tibia_rr" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="3.14"
+      effort="30"
+      velocity="10" />
+  </joint>
+</robot>
