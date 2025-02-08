@@ -660,34 +660,7 @@ class JointStatePublisher(Node):
             count += 1
             time.sleep(1)
         self.stand()
-    
-    '''
-    def update_and_publish(self):
-        
-        for i in range(len(self.joint_positions) - 1, -1, -1): 
-            #self.increment = 0.01
-            if abs(self.joint_positions[i] - self.desired_joint_positions[i]) > self.increment:
-                self.joint_positions[i] += self.increment * np.sign(self.desired_joint_positions[i] - self.joint_positions[i])
-        joint_state_msg = JointState()
-        joint_state_msg.header.stamp = self.get_clock().now().to_msg()
-        joint_state_msg.name = self.joint_names
-        joint_state_msg.position = self.joint_positions
-        self.joint_state_pub.publish(joint_state_msg)
 
-    
-                 self.joint_positions = [
-                    self.joint_positions[0], self.joint_positions[1], self.joint_positions[2],
-                    self.joint_positions[3], self.joint_positions[4], self.joint_positions[5],
-                    self.joint_positions[6], self.joint_positions[7], self.joint_positions[8],
-                    self.joint_positions[9], self.joint_positions[10], self.joint_positions[11],
-                    ]
-                joint_state_msg = JointState()
-                joint_state_msg.header.stamp = self.get_clock().now().to_msg()
-                joint_state_msg.name = self.joint_names
-                joint_state_msg.position = self.joint_positions
-                self.joint_state_pub.publish(joint_state_msg)
-                time.sleep(1)
-        '''
 def main(args=None):
     rclpy.init(args=args)
     joint_state_publisherr = JointStatePublisher()
